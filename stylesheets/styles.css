@@ -38,7 +38,7 @@ button {
 
 .stompy-content {
   position: fixed;
-  top: -100%;
+  top: 0px;
   left: 0px;
   background: #f9f9f9;
   transition: all 0.5s ease;
@@ -60,5 +60,19 @@ div.container {
 
 .content-3 {
   background-image: url(../images/bg3.jpg); }
+
+.stompy-content.from-the-top {
+  top: -100%; }
+
+.stompy-content.from-the-left {
+  left: -100%; }
+
+.stompy-content.fade-in {
+  top: 0px;
+  left: 0px;
+  opacity: 0; }
+
+.stompy-content.fold-in {
+  opacity: 0; }
 
 /*# sourceMappingURL=styles.css.map */

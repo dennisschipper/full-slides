@@ -3,12 +3,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
   function findStompyContent(attrib) {
     x = attrib.getAttribute("data-stompy")
     document.querySelectorAll(".stompy-content[data-stompy=" + x + "]")[0].style.top = "0px"
+    document.querySelectorAll(".stompy-content[data-stompy=" + x + "]")[0].style.left = "0px"
   }
 
   // Find the hide button
   function hideStompyContent(attrib) {
     x = attrib.getAttribute("data-stompy")
     document.querySelectorAll(".stompy-content[data-stompy=" + x + "]")[0].style.top = ""
+    document.querySelectorAll(".stompy-content[data-stompy=" + x + "]")[0].style.left = ""
   }
 
   // Set the open click event
