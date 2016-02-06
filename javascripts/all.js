@@ -1,34 +1,54 @@
 document.addEventListener("DOMContentLoaded", function(event) {
-  // Find the content element
-  function findStompyContent(attrib) {
-    x = attrib.getAttribute("data-stompy")
-    document.querySelectorAll(".stompy-content[data-stompy=" + x + "]")[0].style.top = "0px"
-    document.querySelectorAll(".stompy-content[data-stompy=" + x + "]")[0].style.left = "0px"
-  }
 
-  // Find the hide button
-  function hideStompyContent(attrib) {
-    x = attrib.getAttribute("data-stompy")
-    document.querySelectorAll(".stompy-content[data-stompy=" + x + "]")[0].style.top = ""
-    document.querySelectorAll(".stompy-content[data-stompy=" + x + "]")[0].style.left = ""
-  }
 
-  // Set the open click event
-  var stompyButtons = document.querySelectorAll(".stompy-open");
-  for (var i = 0; i < stompyButtons.length; i++) {
-    stompyButtons[i].addEventListener("click", function(event){
-      event.preventDefault;
-      findStompyContent(event.target)
-    })
-  }
 
-  // Set the hide click event
-  var stompyHideButtons = document.querySelectorAll(".stompy-hide");
-  for (var i = 0; i < stompyHideButtons.length; i++) {
-    stompyHideButtons[i].addEventListener("click", function(event){
-      event.preventDefault;
-      hideStompyContent(event.target)
-    })
-  }
-})
-;
+
+
+  (function(){
+
+    // Let's add some funtionality for adding and removing classes
+    var removeClass = function(item, classToRemove){
+      var classes = item.className.split(" ");
+      if ( classes.indexOf(classToRemove) > -1 ) {
+        classes.splice(classes.indexOf(classToRemove), 1)
+        item.className = classes.join(" ");
+      }
+    }
+
+
+    var toggleClass = function(item, toggle){
+      var classes = item.className.split(" ")
+      if ( classes.indexOf(toggle) > -1 ) {
+        removeClass(item, toggle)
+      } else {
+        for (var i = 0; i < stompySlides.length; i++) {
+          removeClass(stompySlides[i], toggle)
+        }
+
+        item.className = item.className + " " + toggle
+      }
+    };
+
+
+
+
+    var stompyButtons = Array.prototype.slice.call(document.querySelectorAll(".stompy-controls a"))
+    var stompySlides = Array.prototype.slice.call(document.querySelectorAll(".stompy-slides li"))
+
+
+
+    for (var i = 0; i < stompyButtons.length; i++) {
+      stompyButtons[i].addEventListener("click", function(event){
+        event.preventDefault();
+        var slide = stompySlides[stompyButtons.indexOf(this)];
+        toggleClass(slide, "active")
+      })
+    }
+  })();
+
+
+
+
+
+
+});
